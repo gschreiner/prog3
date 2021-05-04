@@ -14,18 +14,18 @@
 
 	<div
 		style="position: relative; display: inline-block; width: 50%; margin-bottom: 40px; margin-left: 15%; border-collapse: collapse;">
-		<c:if test="${listClientes.size() > 0}">
+		<c:if test="${listaCliente.size() > 0}">
 			<table border="2" width="70%" cellpadding="2">
 				<tr>
 					<th>Nome</th>
 					<th>sobrenome</th>
 					<th>Data</th>
 				</tr>
-				<c:forEach var="c" items="${listClientes}">
+				<c:forEach var="c" items="${listaCliente}">
 					<tr>
 						<td>${c.nome}</td>
 						<td>${c.sobrenome}</td>
-						<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dataNasc}"/></td>
+<%-- 						<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dataNasc}"/></td> --%>
 						<td><a href="clienteEdit/${c.id}">Edit</a></td>
 					</tr>
 				</c:forEach>
@@ -45,16 +45,16 @@
 					</p>
 
 					<p>
-						E-Mail:
+						sobrenome:
 						<form:input path="cliente.sobrenome" />
 
 					</p>
 					
-					<p>
-					teste: 
-						<form:input type="date" path="cliente.dataNasc" />
+<!-- 					<p> -->
+<!-- 					teste:  -->
+<%-- 						<form:input type="date" path="cliente.dataNasc" /> --%>
 
-					</p>
+<!-- 					</p> -->
 
 					<input type="submit" value="Salvar" />
 

@@ -1,31 +1,26 @@
 package unoesc.edu.aulaJSP.model;
 
-import java.io.Serializable;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-@SuppressWarnings("serial")
-public class Cliente  implements Serializable {
+@Entity
+@Table(name = "CLIENTES")
+public class Cliente {
+	
+	@Id
+	@GeneratedValue(generator = "seq_pk_clientes", strategy = GenerationType.AUTO)
 	private int id;
+	
+	@Column(name = "nome")
 	private String nome;
+	
+	@Column(name="sobre_nome")
 	private String sobrenome;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dataNasc;
 	
-	
-	
-	public Date getDataNasc() {
-		return dataNasc;
-	}
-
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
-	}
-
-	public Cliente() {
-		this.id = 0;
-	}
 	
 	public int getId() {
 		return id;

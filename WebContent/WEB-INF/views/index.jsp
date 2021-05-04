@@ -6,19 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Primeiro Programa</title>
+<title>Menu</title>
 </head>
 <body>
-	
 
-		Esse é o nosso primeiro projeto maior. <br>
-		
-		
-		<p> Cadastros disponíveis</p>
-		<ul>
-			<li><a href="clientes"> Pessoas</li>
-		
-		</ul>	 
+    <a href="cliente"> Cleinte</a>
 	
 </body>
 </html>
