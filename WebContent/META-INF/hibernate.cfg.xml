@@ -6,5 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <mapping class="unoesc.edu.aulaJSP.model.Cliente"></mapping>
+        <mapping class="unoesc.edu.aulaJSP.model.Produto"></mapping>
+        <mapping class="unoesc.edu.aulaJSP.model.Pedido"></mapping>
     </session-factory>
 </hibernate-configuration>

@@ -8,40 +8,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import unoesc.edu.aulaJSP.model.Cliente;
+import unoesc.edu.aulaJSP.model.ItemPedido;
+import unoesc.edu.aulaJSP.model.Pedido;
 
 @Repository
-public class ClienteDAOImpl implements ClienteDAO {
+public class PedidoDAOImpl implements PedidoDAO {
 	
 	@Autowired
 	SessionFactory sessionFactory;
 
 	@Override
 	@Transactional
-	public List<Cliente> getAllClientes() {
+	public List<Pedido> getAllPedidos() {
 		Session session = sessionFactory.getCurrentSession();
-		List<Cliente> clientes = (List) session.createQuery("FROM Cliente").list();
-		return clientes;
+		List<Pedido> pedidos = (List) session.createQuery("FROM Pedido").list();
+		return pedidos;
 	}
 
 	@Override
 	@Transactional
-	public Cliente getClienteById(int id) {
+	public Pedido getPedidoById(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Cliente c = session.get(Cliente.class, id);
+		Pedido c = session.get(Pedido.class, id);
 		return c;
 	}
 
 	@Override
 	@Transactional
-	public void insertCliente(Cliente cli) {
+	public void insertPedido(Pedido cli) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(cli);		
 	}
 
 	@Override
 	@Transactional
-	public void updateCliente(Cliente cli) {
+	public void updatePedido(Pedido cli) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(cli);
 		
@@ -49,9 +50,18 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	@Transactional
-	public void deleteCliente(Cliente cli) {
+	public void deletePedido(Pedido cli) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(cli);
+		
+	}
+
+	@Override
+	@Transactional
+	public void insertItensPedido(Pedido cli) {
+		Session session = sessionFactory.getCurrentSession();
+		for (ItemPedido item: cli.getItems())
+			session.save(item);
 		
 	}
 

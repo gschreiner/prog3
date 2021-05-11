@@ -5,11 +5,12 @@ import java.util.List;
 import unoesc.edu.aulaJSP.model.Cliente;
 
 public interface ClienteDAO {
-
-	Cliente getClienteById (int id);
-	List<Cliente> getClientes();
-	boolean deleteCliente(int id);
-	boolean insertCliente(Cliente p);
-	boolean updateCliente(Cliente p);
 	
+	List<Cliente> getAllClientes(); //retorna todos os clientes
+	Cliente getClienteById(int id); //retornar um cliente com base no id
+	void insertCliente(Cliente cli); //insere cliente
+	void updateCliente(Cliente cli); //atualiza
+	void deleteCliente(Cliente cli);
+	
+
 }

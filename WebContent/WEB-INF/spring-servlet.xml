@@ -27,10 +27,9 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	 <!-- Essa parte é nova -->
-	<tx:annotation-driven transaction-manager="transactionManager"/> <!-- Não esqueça de adicionar o namespace de TX -->
-     
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<tx:annotation-driven transaction-manager="transactionManager"/> 
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/prog3"/>
         <property name="username" value="postgres" />
@@ -58,6 +57,8 @@
     </bean>
  
  	<bean id="ClienteDAO" class="unoesc.edu.aulaJSP.DAO.ClienteDAOImpl"></bean>
+ 	<bean id="ProdutoDAO" class="unoesc.edu.aulaJSP.DAO.ProdutoDAOImpl"></bean>
+ 	<bean id="PedidoDAO" class="unoesc.edu.aulaJSP.DAO.PedidoDAOImpl"></bean>
     
     <tx:annotation-driven />
     <bean id="transactionManager"  class="org.springframework.orm.hibernate5.HibernateTransactionManager">

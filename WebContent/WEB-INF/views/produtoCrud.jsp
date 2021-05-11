@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>Produtos</title>
 </head>
 <body>
 
@@ -18,15 +18,16 @@
 			<table border="2" width="70%" cellpadding="2">
 				<tr>
 					<th>Nome</th>
-					<th>sobrenome</th>
-					<th>Data</th>
+					<th>Marca</th>
+					<th>Preço</th>
 				</tr>
 				<c:forEach var="c" items="${listClientas}">
 					<tr>
-						<td>${c.nome}</td>
-						<td>${c.sobrenome}</td>
+						<td>${c.name}</td>
+						<td>${c.brand}</td>
+						<td>${c.valor}</td>
 <%-- 						<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dataNasc}"/></td> --%>
-						<td><a href="/aulaJSP/clienteEdit/${c.id}">Edit</a></td>
+						<td><a href="/aulaJSP/produtoEdit/${c.id}">Edit</a></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -36,25 +37,30 @@
 	<div
 		style="position: relative; display: inline-block; width: 50%; margin-bottom: 40px; margin-left: 15%; border-collapse: collapse;">
 		 Percebam que aqui no action eu to passando qual a página que elevai mandar os dados depois que eu clicar no botao
-				<form action="/aulaJSP/clienteSave" method="POST" modelAttribute="cliente">
-					<form:hidden path="cliente.id" />
+				<form action="/aulaJSP/produtoSave" method="POST" modelAttribute="produto">
+					<form:hidden path="produto.id" />
 					<p>
 						Nome:
-						<form:input path="cliente.nome" />
+						<form:input path="produto.name" />
 
 					</p>
 
 					<p>
-						E-Mail:
-						<form:input path="cliente.sobrenome" />
+						Marca:
+						<form:input path="produto.brand" />
+
+					</p>
+					<p>
+						Preço:
+						<form:input path="produto.valor" />
+
+					</p>
+					<p>
+						Detalhes:
+						<form:input path="produto.detail" />
 
 					</p>
 					
-<!-- 					<p> -->
-<!-- 					teste:  -->
-<%-- 						<form:input type="date" path="cliente.dataNasc" /> --%>
-
-<!-- 					</p> -->
 
 					<input type="submit" value="Salvar" />
 

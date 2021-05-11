@@ -8,40 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import unoesc.edu.aulaJSP.model.Cliente;
+import unoesc.edu.aulaJSP.model.Produto;
 
 @Repository
-public class ClienteDAOImpl implements ClienteDAO {
+public class ProdutoDAOImpl implements ProdutoDAO {
 	
 	@Autowired
 	SessionFactory sessionFactory;
 
 	@Override
 	@Transactional
-	public List<Cliente> getAllClientes() {
+	public List<Produto> getAllProdutos() {
 		Session session = sessionFactory.getCurrentSession();
-		List<Cliente> clientes = (List) session.createQuery("FROM Cliente").list();
-		return clientes;
+		List<Produto> produtos = (List) session.createQuery("FROM Produto").list();
+		return produtos;
 	}
 
 	@Override
 	@Transactional
-	public Cliente getClienteById(int id) {
+	public Produto getProdutoById(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Cliente c = session.get(Cliente.class, id);
+		Produto c = session.get(Produto.class, id);
 		return c;
 	}
 
 	@Override
 	@Transactional
-	public void insertCliente(Cliente cli) {
+	public void insertProduto(Produto cli) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(cli);		
 	}
 
 	@Override
 	@Transactional
-	public void updateCliente(Cliente cli) {
+	public void updateProduto(Produto cli) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(cli);
 		
@@ -49,7 +49,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Override
 	@Transactional
-	public void deleteCliente(Cliente cli) {
+	public void deleteProduto(Produto cli) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(cli);
 		
