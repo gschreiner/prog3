@@ -34,10 +34,10 @@ public class Produto {
 	private float valor;
 	
 //	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "produto_pedido", 
+//	@JoinTable(name = "produtos_pedidos", 
 //  joinColumns = { @JoinColumn(name = "id_pedido") }, 
 //  inverseJoinColumns = { @JoinColumn(name = "id_produto") })
-//	private Set<Pedido> pessoas = new HashSet<Pedido>();
+//	private List<Pedido> pedidos = new HashSet<Pedido>();
 
 	
 	

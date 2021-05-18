@@ -32,20 +32,20 @@ import unoesc.edu.aulaJSP.DAO.ProdutoDAO;
 import unoesc.edu.aulaJSP.model.ItemPedido;
 import unoesc.edu.aulaJSP.model.Pedido;
 
-@Controller
+//@Controller
 public class PedidosController {
 	
-	@Autowired
+	//@Autowired
 	private PedidoDAO pedidoDao;
 	
-	@Autowired
+	//@Autowired
 	private ProdutoDAO produtoDao;
 	
-	@Autowired
+	//@Autowired
 	private ClienteDAO clienteDao;
 	
 
-	@RequestMapping(value = "/pedidos", method = RequestMethod.GET)
+	//@RequestMapping(value = "/pedidos", method = RequestMethod.GET)
 	public String rootPage(Model model, HttpSession session) {
 
 		List<Pedido> listaPedido = this.pedidoDao.getAllPedidos();
@@ -60,7 +60,7 @@ public class PedidosController {
 		return "pedidoCrud";
 	}
 
-	@RequestMapping(value = "/pedidoSave", method = RequestMethod.POST)
+	//@RequestMapping(value = "/pedidoSave", method = RequestMethod.POST)
 	public String save(@ModelAttribute("pedido") Pedido pedido, HttpSession session) {
 		
 
@@ -77,7 +77,7 @@ public class PedidosController {
 	}
 	
 	
-	@RequestMapping(value = "/addPedido", method = RequestMethod.POST)
+	//@RequestMapping(value = "/addPedido", method = RequestMethod.POST)
 	public String addPedido(@ModelAttribute("itemPedido") ItemPedido item, @ModelAttribute("pedido") Pedido pedido,Model model, HttpSession session) {
 		item.setPedido(pedido);
 		pedido.getItems().add(item);
@@ -85,7 +85,6 @@ public class PedidosController {
 		
 		pedidoDao.insertItensPedido(pedido);
 		
-		model.addAttribute("listPedidos", this.pedidoDao.getAllPedidos());
 		model.addAttribute("listClientes", this.clienteDao.getAllClientes());
 		model.addAttribute("listProdutos", this.produtoDao.getAllProdutos());
 		model.addAttribute("pedido", pedido);
@@ -96,7 +95,7 @@ public class PedidosController {
 	
 	
 
-	@RequestMapping(value = "/pedidoEdit/{id}", method = RequestMethod.GET)
+	//@RequestMapping(value = "/pedidoEdit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable int id, Model model, HttpSession session) {
 		List<Pedido> pedidos = this.pedidoDao.getAllPedidos();
 
@@ -111,7 +110,7 @@ public class PedidosController {
 		return "pedidoCrud";
 	}
 	
-	@RequestMapping(value = "/pedidoEditItens/{id}", method = RequestMethod.GET)
+	//@RequestMapping(value = "/pedidoEditItens/{id}", method = RequestMethod.GET)
 	public String editItens(@PathVariable int id, Model model, HttpSession session) {
 		List<Pedido> pedidos = this.pedidoDao.getAllPedidos();
 
@@ -125,7 +124,7 @@ public class PedidosController {
 		return "pedidoItensCrud";
 	}
 	
-	@RequestMapping(value = "/pedidoDel/{id}", method = RequestMethod.GET)
+	//@RequestMapping(value = "/pedidoDel/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable int id, Model model) {
 		
 

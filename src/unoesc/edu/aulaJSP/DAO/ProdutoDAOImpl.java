@@ -6,11 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import unoesc.edu.aulaJSP.model.Produto;
 
-@Repository
+@Service(value="ProdutoDAO")
 public class ProdutoDAOImpl implements ProdutoDAO {
 	
 	@Autowired

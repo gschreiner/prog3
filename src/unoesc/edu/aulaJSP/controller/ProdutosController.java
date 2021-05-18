@@ -29,14 +29,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import unoesc.edu.aulaJSP.DAO.ProdutoDAO;
 import unoesc.edu.aulaJSP.model.Produto;
 
-@Controller
+//@Controller
 public class ProdutosController {
 	
-	@Autowired
+	//@Autowired
 	private ProdutoDAO produtoDao;
 	
 
-	@RequestMapping(value = "/produtos", method = RequestMethod.GET)
+	//@RequestMapping(value = "/produtos", method = RequestMethod.GET)
 	public String rootPage(Model model, HttpSession session) {
 
 		List<Produto> listaProduto = this.produtoDao.getAllProdutos();
@@ -48,7 +48,7 @@ public class ProdutosController {
 		return "produtoCrud";
 	}
 
-	@RequestMapping(value = "/produtoSave", method = RequestMethod.POST)
+	//@RequestMapping(value = "/produtoSave", method = RequestMethod.POST)
 	public String save(@ModelAttribute("produto") Produto produto, HttpSession session) {
 		
 
@@ -77,7 +77,7 @@ public class ProdutosController {
 		return "produtoCrud";
 	}
 	
-	@RequestMapping(value = "/produtoDel/{id}", method = RequestMethod.GET)
+	//@RequestMapping(value = "/produtoDel/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable int id, Model model) {
 		
 
