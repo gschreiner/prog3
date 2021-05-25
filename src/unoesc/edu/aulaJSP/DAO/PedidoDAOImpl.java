@@ -61,7 +61,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 	@Transactional
 	public void insertItensPedido(Pedido cli) {
 		Session session = sessionFactory.getCurrentSession();
-		for (ItemPedido item: cli.getItems())
+		for (ItemPedido item: cli.getItens())
 			session.save(item);
 		
 	}

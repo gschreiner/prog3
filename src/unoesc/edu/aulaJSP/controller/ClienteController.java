@@ -45,14 +45,9 @@ public class ClienteController {
 
 
 	public void save() {
-		
-
 		if (cli.getId() == 0) {
 			this.clienteDao.insertCliente(cli);
 		} else {
-			//Cliente c = this.clienteDao.getClienteById(cliente.getId());
-			//c.setNome(cliente.getNome());
-			//c.setSobrenome(cliente.getSobrenome());
 			this.clienteDao.updateCliente(cli);
 		}
 		System.out.println("Salvou: " + cli.getNome());
@@ -61,14 +56,15 @@ public class ClienteController {
 	}
 
 	public void edit(int id) {
-		List<Cliente> clientes = this.clienteDao.getAllClientes();
+		//List<Cliente> clientes = this.clienteDao.getAllClientes();
 
-		cli = this.clienteDao.getClienteById(id);
+		this.cli = this.clienteDao.getClienteById(id);
 
 	}
 
 	public List<Cliente> getListClientes() {
-		return this.clienteDao.getAllClientes();
+		this.listClientes = this.clienteDao.getAllClientes();
+		return this.listClientes;
 	}
 
 	public void setListClientes(List<Cliente> listClientes) {

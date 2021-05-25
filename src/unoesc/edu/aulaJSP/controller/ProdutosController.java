@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,63 +32,57 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import unoesc.edu.aulaJSP.DAO.ProdutoDAO;
 import unoesc.edu.aulaJSP.model.Produto;
 
-//@Controller
+@ManagedBean(name="produtoMB")
+@RequestScoped
 public class ProdutosController {
 	
-	//@Autowired
+	private List<Produto> produtos;
+	private Produto produto = new Produto();
+	
+	@ManagedProperty(value="#{ProdutoDAO}")
 	private ProdutoDAO produtoDao;
 	
 
-	//@RequestMapping(value = "/produtos", method = RequestMethod.GET)
-	public String rootPage(Model model, HttpSession session) {
-
-		List<Produto> listaProduto = this.produtoDao.getAllProdutos();
-		System.out.println(listaProduto);
-
-		model.addAttribute("listClientas", listaProduto);
-		model.addAttribute("produto", new Produto());
-
-		return "produtoCrud";
-	}
-
-	//@RequestMapping(value = "/produtoSave", method = RequestMethod.POST)
-	public String save(@ModelAttribute("produto") Produto produto, HttpSession session) {
-		
-
+	public void save() {
+		System.out.println("Chamou aqui");
 		if (produto.getId() == 0) {
 			this.produtoDao.insertProduto(produto);
 		} else {
-			//Produto c = this.produtoDao.getProdutoById(produto.getId());
-			//c.setNome(produto.getNome());
-			//c.setSobrenome(produto.getSobrenome());
+			System.out.println("CHegou");
 			this.produtoDao.updateProduto(produto);
 		}
-		System.out.println("Salvou: " + produto.getName());
-
-		return "redirect:/produtos";
+		this.produto = new Produto();
 	}
 
-	@RequestMapping(value = "/produtoEdit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable int id, Model model, HttpSession session) {
-		List<Produto> produtos = this.produtoDao.getAllProdutos();
+	public void load(int id) {
+		
+		this.produto = this.produtoDao.getProdutoById(id);
+		System.out.println(this.produto.getId());
 
-		Produto c = this.produtoDao.getProdutoById(id);
-
-		model.addAttribute("listClientas", produtos);
-		model.addAttribute("produto", c);
-
-		return "produtoCrud";
 	}
 	
-	//@RequestMapping(value = "/produtoDel/{id}", method = RequestMethod.GET)
-	public String delete(@PathVariable int id, Model model) {
+	public void delete() {
 		
+		this.produtoDao.deleteProduto(produto);
 
-		Produto c = this.produtoDao.getProdutoById(id);
+	}
 
-		this.produtoDao.deleteProduto(c);
+	
+	/* GETTERS E SETTERS*/
+	public List<Produto> getProdutos() {
+		return this.produtoDao.getAllProdutos();
+	}
 
-		return "redirect:/produtos";
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	public ProdutoDAO getProdutoDao() {
@@ -95,7 +92,5 @@ public class ProdutosController {
 	public void setProdutoDao(ProdutoDAO produtoDao) {
 		this.produtoDao = produtoDao;
 	}
-	
-	
 
 }

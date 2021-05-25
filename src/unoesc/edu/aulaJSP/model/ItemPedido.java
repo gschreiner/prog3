@@ -20,7 +20,7 @@ public class ItemPedido implements Serializable {
 	Pedido pedido;
 	
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_produto")//id_produto integer,
 	Produto produto;
 	

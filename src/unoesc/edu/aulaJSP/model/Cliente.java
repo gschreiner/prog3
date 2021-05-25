@@ -58,5 +58,23 @@ public class Cliente {
 	public void setDataNasc(Date dataNasc) {
 		this.dataNasc = dataNasc;
 	}
+
+	@Override
+	public String toString() {
+		return this.nome;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.id;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return ((Cliente) obj).getId() == this.id;
+				
+	}
+	
+	
 	
 }

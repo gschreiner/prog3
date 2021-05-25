@@ -1,6 +1,6 @@
 package unoesc.edu.aulaJSP.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,10 +43,10 @@ public class Pedido {
 	
 	//@ManyToMany(mappedBy = "produtos")
 	@OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
-	private List<ItemPedido> items;
+	private List<ItemPedido> itens;
 	
 	public Pedido() {
-		this.items = new LinkedList<ItemPedido>();
+		this.itens = new LinkedList<ItemPedido>();
 	}
 	
 	public int getId() {
@@ -79,11 +79,11 @@ public class Pedido {
 	public void setEntregue(Boolean entregue) {
 		this.entregue = entregue;
 	}
-	public List<ItemPedido> getItems() {
-		return items;
+	public List<ItemPedido> getItens() {
+		return itens;
 	}
-	public void setItems(List<ItemPedido> items) {
-		this.items = items;
+	public void setItens(List<ItemPedido> items) {
+		this.itens = items;
 	}
 	
 	
