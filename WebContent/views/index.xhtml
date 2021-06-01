@@ -7,15 +7,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:outputStylesheet library="css" name="principal.css"/> <!-- inserindo o CSS -->
 <h:head>
 </h:head>
-<h:body style="background-color:#121212;">
+<h:body>
 	<p:panel id="panelCad" header="Menu"
 		style="margin: 20px auto; width:150px;">
 		<p:linkButton outcome="clienteCrud.xhtml" value="Clientes" style="margin-right:20px; width:120px;" />
 		<p:linkButton outcome="produtoCrud.xhtml" value="Produtos" style="margin-top:10px; margin-right:20px; width:120px;" />
 		<p:linkButton outcome="pedidoCrud.xhtml" value="Pedidos" style="margin-top:10px; margin-right:20px; width:120px;" />
 	</p:panel>
-
 </h:body>
 </html>

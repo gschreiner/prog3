@@ -38,3 +38,20 @@ CREATE TABLE Produtos_Pedidos (
 );
 
 ALTER TABLE clientes ADD COLUMN data_nasc date;
+
+CREATE SEQUENCE seq_pk_servicos;
+
+CREATE TABLE servicos (
+	id int PRIMARY KEY DEFAULT nextval('seq_pk_servicos'),
+	name varchar(30),
+	valor float
+);
+
+CREATE TABLE servicos_clientes(
+	id_cliente integer,
+	id_servico integer,
+	FOREIGN KEY (id_cliente ) REFERENCES clientes(id),
+	FOREIGN KEY (id_servico ) REFERENCES servicos(id)
+);
+
+INSERT INTO servicos (name, valor) VALUES ('servico 1', 1.00),('servico 2', 2.00),('servico 3', 4.50);

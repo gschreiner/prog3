@@ -20,17 +20,17 @@
 	
 
 	<p:panel style="width:70%; margin: 20px auto;" id="panel"  header="Data">
-		<p:dataTable var="p" value="#{clienteMB.listClientes}" scrollable="true"
+		<p:dataTable var="p" value="#{clienteMB.listClientes}" scrollable="true" allowUnsorting="true" sortMode="single"
 			scrollHeight="200">
-			<p:column headerText="Nome">
+			<p:column sortBy="#{p.nome}" headerText="Nome">
 				<p:outputLabel value="#{p.nome}" />
 			</p:column>
 
-			<p:column headerText="sobrenome">
+			<p:column sortBy="#{p.sobrenome}" headerText="sobrenome">
 				<p:outputLabel value="#{p.sobrenome}" />
 			</p:column>
 
-			<p:column headerText="Data Nascimento" width="140">
+			<p:column sortBy="#{p.dataNasc}" headerText="Data Nascimento" width="140">
 				<p:outputLabel value="#{p.dataNasc}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</p:outputLabel>
@@ -39,7 +39,7 @@
 			<p:column width="80">
 				<h:form>
 					<p:commandButton icon="pi pi-pencil"
-						action="#{clienteMB.load(p.id)}" update="panelCad" />
+						action="#{clienteMB.edit(p.id)}" update="panelCad" />
 				</h:form>
 			</p:column>
 		</p:dataTable>
@@ -47,17 +47,22 @@
 
 	<p:panel id="panelCad" header="Cadastro" style="margin: 20px auto; width:40%;">
 		<h:form>
+			<p:messages id="msgs" closable="true"/>
+		
 			<h:inputHidden value="#{clienteMB.cli.id}" />
 
 			<p:growl id="growl" sticky="false" showDetail="false" />
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
 				<h:outputText value="Nome: " />
-				<p:inputText value="#{clienteMB.cli.nome}" required="true"
-					label="Nome" />
+				<p:inputText value="#{clienteMB.cli.nome}" required="true" label="Nome" validatorMessage="Deu merda!">
+					<f:validateLength minimum="2"/>
+				</p:inputText>
 
 				<h:outputText value="Sobrenome: " />
-				<p:inputText value="#{clienteMB.cli.sobrenome}" />
+				<p:inputText value="#{clienteMB.cli.sobrenome}" required="true">
+					<f:validateLength minimum="5"/>
+				</p:inputText>
 
 
 				<h:outputLabel for="dataNasc" value="Data Nascimento:" />
