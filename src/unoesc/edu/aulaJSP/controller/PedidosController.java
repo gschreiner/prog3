@@ -63,6 +63,8 @@ public class PedidosController {
 		} else {
 			this.pedidoDao.updatePedido(pedido);
 		}
+		
+		this.pedido = new Pedido();
 
 	}
 	

@@ -7,9 +7,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +38,7 @@ import unoesc.edu.aulaJSP.model.Cliente;
 @RequestScoped
 public class ClienteController {
 	
-	private List<Cliente> listClientes;
+	private List<Cliente> listClientes = null;
 	private Cliente cli = new Cliente();
 	
 	@ManagedProperty(value="#{ClienteDAO}")
@@ -50,9 +52,12 @@ public class ClienteController {
 		} else {
 			this.clienteDao.updateCliente(cli);
 		}
-		System.out.println("Salvou: " + cli.getNome());
-
-		//return "redirect:/clientes";
+		
+		FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Cliente " + cli.getNome()+ " cadastrado!"));
+		
+		this.cli = new Cliente();
+		
 	}
 
 	public void edit(int id) {
@@ -61,9 +66,11 @@ public class ClienteController {
 		this.cli = this.clienteDao.getClienteById(id);
 
 	}
+	
 
 	public List<Cliente> getListClientes() {
-		this.listClientes = this.clienteDao.getAllClientes();
+		if (this.listClientes == null)
+			this.listClientes = this.clienteDao.getAllClientes();
 		return this.listClientes;
 	}
 
