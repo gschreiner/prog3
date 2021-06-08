@@ -54,4 +54,19 @@ CREATE TABLE servicos_clientes(
 	FOREIGN KEY (id_servico ) REFERENCES servicos(id)
 );
 
+
+
 INSERT INTO servicos (name, valor) VALUES ('servico 1', 1.00),('servico 2', 2.00),('servico 3', 4.50);
+
+CREATE SEQUENCE seq_pk_usuario;
+
+CREATE TABLE usuarios (
+	id int PRIMARY KEY DEFAULT nextval('seq_pk_usuario'),
+	nome varchar(50),
+	email varchar(50),
+	img varchar(100),
+	login varchar(40),
+	senha varchar(40),
+	root boolean
+);
+INSERT INTO usuarios (nome, email, login, senha, root) VALUES ('admin admin',	'admin@admin.com', 'admin', 'ee10c315eba2c75b403ea99136f5b48d', true);
