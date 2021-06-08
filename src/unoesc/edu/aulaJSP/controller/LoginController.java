@@ -34,7 +34,7 @@ public class LoginController {
 	
 	private Usuario usuario = new Usuario();
 	private List<Usuario> listUsuario;
-	private String photoFile;
+	private static String photoFile;
 	
 	private boolean logado = false;
 	
@@ -90,8 +90,8 @@ public class LoginController {
 
 	public void save() {
 		this.usuario.setSenha(this.encryptSenha(this.getUsuario().getSenha()));
-		//this.usuario.setImagem(this.photoFile);
-		System.out.println("teste: "+ this.usuario.getImagem());
+		this.usuario.setImagem(this.photoFile);
+		System.out.println("teste: "+ this.photoFile);
 		
 		if (usuario.getId() == 0) {
 			this.usuarioDao.insertUsuario(usuario);
@@ -115,6 +115,7 @@ public class LoginController {
 	
 	public void load (int id) {
 		this.usuario = usuarioDao.getUsuarioById(id);
+		this.photoFile = this.usuario.getImagem();
 	}
 
 	public void fazLogin() throws IOException {

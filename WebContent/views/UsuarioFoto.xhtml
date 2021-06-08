@@ -71,6 +71,16 @@
 
 				<h:outputText value="Senha: " />
 				<p:password required="true" value="#{usuarioMB.usuario.senha}" />
+
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:photoCam widgetVar="pc" listener="#{usuarioMB.oncapture}"
+						update="photo" />
+					<p:commandButton type="button" value="Capture"
+						onclick="PF('pc').capture()" />
+					<p:outputPanel id="photo">
+						<p:graphicImage value="/BDimage/#{usuarioMB.photoFile}.jpeg" />
+					</p:outputPanel>
+				</h:panelGrid>
 				
 				
 				<p:commandButton value="Salvar" update="panel panelCad"
